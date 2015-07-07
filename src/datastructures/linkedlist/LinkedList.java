@@ -82,12 +82,62 @@ public class LinkedList<T> {
 		}
 	}
 
+	public void printMiddle() {
+		Node<T> fastPointer = head;
+		Node<T> slowPointer = head;
+		if (head != null) {
+			while (fastPointer != null && fastPointer.next != null) {
+				fastPointer = fastPointer.next.next;
+				slowPointer = slowPointer.next;
+			}
+			System.out.println(slowPointer.getValue());
+		}
+	}
+
+	public void printNthFromLast(int n) {
+		System.out.println();
+		Node<T> fastPointer = head;
+		Node<T> slowPointer = head;
+		for (int i = 0; i < n; i++) {
+			fastPointer = fastPointer.next;
+		}
+		while (fastPointer != null) {
+			fastPointer = fastPointer.next;
+			slowPointer = slowPointer.next;
+		}
+		System.out.print(slowPointer.getValue());
+	}
+
+	public boolean areIdentical(Node<T> first, Node<T> second) {
+		if (first == null && second == null)
+			return true;
+		if (first != null && second == null)
+			return false;
+		if (first == null && second != null)
+			return false;
+		if (first.getValue() != second.getValue())
+			return false;
+		return areIdentical(first.next, second.next);
+	}
+
 	public void print() {
 		Node<T> tempNode = this.head;
 		while (tempNode != null) {
 			System.out.print(tempNode.getValue() + "->");
 			tempNode = tempNode.next;
 		}
+	}
+
+	public void printReverse() {
+		printReverse(this.head);
+	}
+
+	private void printReverse(Node<T> node) {
+		if (node == null) {
+			return;
+		}
+		printReverse(node.next);
+		System.out.print(node.getValue() + "->");
 	}
 
 	private Node<T> getLastNode() {
