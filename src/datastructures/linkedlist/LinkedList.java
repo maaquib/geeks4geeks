@@ -111,13 +111,43 @@ public class LinkedList<T> {
 	public boolean areIdentical(Node<T> first, Node<T> second) {
 		if (first == null && second == null)
 			return true;
-		if (first != null && second == null)
+		if (first == null || second == null)
 			return false;
-		if (first == null && second != null)
-			return false;
-		if (first.getValue() != second.getValue())
+		if (!first.getValue().equals(second.getValue()))
 			return false;
 		return areIdentical(first.next, second.next);
+	}
+
+	public T findMergeNode(Node<T> headOther) {
+		Node<T> temp = this.head, tempA = this.head, tempB = headOther;
+		int d = 0;
+		while (temp != null) {
+			d++;
+			temp = temp.next;
+		}
+		temp = headOther;
+		while (temp != null) {
+			d--;
+			temp = temp.next;
+		}
+		if (d > 0) {
+			tempA = this.head;
+			while (d > 0) {
+				tempA = tempA.next;
+				d--;
+			}
+		} else {
+			tempB = headOther;
+			while (d < 0) {
+				tempB = tempB.next;
+				d++;
+			}
+		}
+		while (!tempA.getValue().equals(tempB.getValue())) {
+			tempA = tempA.next;
+			tempB = tempB.next;
+		}
+		return tempA.getValue();
 	}
 
 	public void print() {
