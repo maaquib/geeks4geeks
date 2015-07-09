@@ -16,6 +16,9 @@ public class LinkedListTest {
 		// System.out.println(myList.getNth(6));
 		// myList.printMiddle();
 		// myList.printReverse();
+		// myList.print();
+		// myList.reverse();
+		System.out.println(myList.detectLoop());
 		myList.print();
 	}
 

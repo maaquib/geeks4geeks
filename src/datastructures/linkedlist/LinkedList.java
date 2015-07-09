@@ -150,12 +150,40 @@ public class LinkedList<T> {
 		return tempA.getValue();
 	}
 
+	public void reverse() {
+		if (this.head == null) {
+			return;
+		}
+		Node<T> current = this.head;
+		Node<T> prev = null;
+		while (current.next != null) {
+			this.head = this.head.next;
+			current.next = prev;
+			prev = current;
+			current = this.head;
+		}
+		this.head.next = prev;
+	}
+
+	public boolean detectLoop() {
+		Node<T> slowPointer = this.head, fastPointer = this.head;
+		while (slowPointer != null && fastPointer != null && fastPointer.next != null) {
+			slowPointer = slowPointer.next;
+			fastPointer = fastPointer.next.next;
+			if (slowPointer.equals(fastPointer)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void print() {
 		Node<T> tempNode = this.head;
 		while (tempNode != null) {
 			System.out.print(tempNode.getValue() + "->");
 			tempNode = tempNode.next;
 		}
+		System.out.println();
 	}
 
 	public void printReverse() {
