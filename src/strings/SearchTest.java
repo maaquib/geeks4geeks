@@ -6,5 +6,8 @@ public class SearchTest {
 		KMP kmp = new KMP("ABAB");
 		kmp.printLpsArray();
 		kmp.matchPattern("ABABDABACDABABCABAB");
+
+		RabinKarp rk = new RabinKarp();
+		rk.matchPattern("ABAB", "ABABDABACDABABCABAB");
 	}
 }
