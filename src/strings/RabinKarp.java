@@ -1,5 +1,8 @@
 package strings;
 
+import java.math.BigInteger;
+import java.util.Random;
+
 public class RabinKarp {
 	private static int RADIX = 256;
 
@@ -8,7 +11,7 @@ public class RabinKarp {
 		char[] txt = text.toCharArray();
 
 		int hash = 1, patHash = 0, txtHash = 0;
-		int prime = 101;
+		int prime = getPrimeNumber();
 
 		/*
 		 * Calculate h for removing leading element
@@ -52,5 +55,10 @@ public class RabinKarp {
 				}
 			}
 		}
+	}
+
+	private int getPrimeNumber() {
+		BigInteger prime = BigInteger.probablePrime(31, new Random());
+		return prime.intValue();
 	}
 }
