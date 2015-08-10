@@ -30,15 +30,15 @@ public class Edge implements Comparable<Edge> {
 		return 0;
 	}
 
-	public int getFromVertice() {
+	public int from() {
 		return from;
 	}
 
-	public int getToVertice() {
+	public int to() {
 		return to;
 	}
 
-	public double getWeight() {
+	public double weight() {
 		return weight;
 	}
 }

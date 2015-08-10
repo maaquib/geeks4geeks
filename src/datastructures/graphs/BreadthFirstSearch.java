@@ -52,7 +52,8 @@ public class BreadthFirstSearch {
 		while (!q.isEmpty()) {
 			int item = q.poll();
 			visited[item] = true;
-			for (Integer vertice : g.getAdjList(item)) {
+			for (Edge edge : g.getAdjList(item)) {
+				Integer vertice = edge.to();
 				if (!visited[vertice]) {
 					visited[vertice] = true;
 					parent[vertice] = item;

@@ -28,7 +28,8 @@ public class DepthFirstSearch {
 	private void dfsUtil(int src) {
 		connected++;
 		visited[src] = true;
-		for (Integer vertice : g.getAdjList(src)) {
+		for (Edge edge : g.getAdjList(src)) {
+			Integer vertice = edge.to();
 			if (!visited[vertice]) {
 				dfsUtil(vertice);
 			}
