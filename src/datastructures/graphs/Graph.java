@@ -1,5 +1,6 @@
 package datastructures.graphs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -11,13 +12,14 @@ import java.util.LinkedList;
  */
 public class Graph {
 	private HashMap<Integer, LinkedList<Integer>> adjLists = new HashMap<>();
+	private ArrayList<Edge> edges = new ArrayList<>();
 
-	private int nodes;
-	private int edges;
+	private int nodesCount;
+	private int edgesCount;
 
 	public Graph(int nodes) {
-		this.nodes = nodes;
-		this.edges = 0;
+		this.nodesCount = nodes;
+		this.edgesCount = 0;
 		for (int i = 0; i < nodes; i++) {
 			this.adjLists.put(i, new LinkedList<>());
 		}
@@ -29,22 +31,25 @@ public class Graph {
 		adjLists.put(src, adjList);
 		adjList = this.adjLists.get(dest);
 		adjList.add(src);
-		this.edges += 2;
+		this.edgesCount += 2;
+		edges.add(new Edge(src, dest, 1));
+		edges.add(new Edge(dest, src, 1));
 	}
 
 	public void addDirectedEdge(int src, int dest, int wt) {
 		LinkedList<Integer> adjList = this.adjLists.get(src);
 		adjList.add(dest);
 		adjLists.put(src, adjList);
-		this.edges++;
+		this.edgesCount++;
+		edges.add(new Edge(src, dest, 1));
 	}
 
 	public int getEdgesCount() {
-		return this.edges;
+		return this.edgesCount;
 	}
 
 	public int getVerticesCount() {
-		return this.nodes;
+		return this.nodesCount;
 	}
 
 	/**
@@ -54,7 +59,7 @@ public class Graph {
 	 * @return
 	 */
 	public Iterable<Integer> getAdjList(int src) {
-		if (src < 0 || src >= this.nodes) {
+		if (src < 0 || src >= this.nodesCount) {
 			return null;
 		}
 		return this.adjLists.get(src);
