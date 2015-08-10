@@ -16,9 +16,11 @@ public class BreadthFirstSearch {
 	private boolean[] visited;
 	private int[] dist;
 	private int[] parent;
+	private int src;
 
 	public BreadthFirstSearch(Graph g, int src) {
 		this.g = g;
+		this.src = src;
 		visited = new boolean[g.getVerticesCount()];
 		initDistances();
 		bfs(src);
@@ -74,14 +76,25 @@ public class BreadthFirstSearch {
 		if (!visited[dest])
 			return null;
 		Stack<Integer> pathStack = new Stack<>();
-		for (int i = dest; parent[i] != 0; i = parent[i]) {
+		for (int i = dest; i != src; i = parent[i]) {
 			pathStack.push(i);
 		}
-		pathStack.push(0);
+		pathStack.push(src);
 		return pathStack;
 	}
 
 	public int[] getDistancesArray() {
 		return this.dist;
+	}
+
+	public void printPathTo(int dest) {
+		if (!visited[dest]) {
+			System.out.println("No Path");
+		} else {
+			for (int vertice : pathToDest(dest)) {
+				System.out.print(vertice + "->");
+			}
+			System.out.println();
+		}
 	}
 }

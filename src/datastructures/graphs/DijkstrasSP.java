@@ -12,6 +12,7 @@ public class DijkstrasSP {
 	private HashMap<Integer, Double> map = new HashMap<>();
 
 	public DijkstrasSP(Graph graph, int src) {
+		parent = new int[graph.getVerticesCount()];
 		dist = new double[graph.getVerticesCount()];
 		for (int i = 0; i < dist.length; i++) {
 			dist[i] = Double.MAX_VALUE;

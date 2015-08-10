@@ -6,6 +6,7 @@ public class DepthFirstSearch {
 	private Graph g;
 	private boolean visited[];
 	private int parent[];
+	private int src;
 
 	/**
 	 * Count of Connected components
@@ -20,6 +21,7 @@ public class DepthFirstSearch {
 	 */
 	public DepthFirstSearch(Graph g, int src) {
 		this.g = g;
+		this.src = src;
 		visited = new boolean[g.getVerticesCount()];
 		parent = new int[g.getVerticesCount()];
 		dfsUtil(src);
@@ -31,6 +33,7 @@ public class DepthFirstSearch {
 		for (Edge edge : g.getAdjList(src)) {
 			Integer vertice = edge.to();
 			if (!visited[vertice]) {
+				parent[vertice] = src;
 				dfsUtil(vertice);
 			}
 		}
@@ -46,11 +49,22 @@ public class DepthFirstSearch {
 		if (!visited[dest])
 			return null;
 		Stack<Integer> pathStack = new Stack<>();
-		for (int i = dest; parent[i] != 0; i = parent[i]) {
+		for (int i = dest; i != src; i = parent[i]) {
 			pathStack.push(i);
 		}
-		pathStack.push(0);
+		pathStack.push(src);
 		return pathStack;
+	}
+
+	public void printPathTo(int dest) {
+		if (!visited[dest]) {
+			System.out.println("No Path");
+		} else {
+			for (int vertice : pathToDest(dest)) {
+				System.out.print(vertice + "->");
+			}
+			System.out.println();
+		}
 	}
 
 	public int getCountOfConnectedComps() {
