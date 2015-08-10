@@ -24,6 +24,9 @@ public class GraphTest {
 		DepthFirstSearch dfs = new DepthFirstSearch(g, 2);
 		dfs.printPathTo(4);
 
+		TopologicalSort ts = new TopologicalSort(g);
+		ts.printRanks();
+
 		GraphCycle gc = new GraphCycle(g);
 		System.out.println("Has Cycle: " + gc.hasCycle());
 		g.addDirectedEdge(4, 3, 1);
