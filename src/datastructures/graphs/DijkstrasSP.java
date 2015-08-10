@@ -53,7 +53,7 @@ public class DijkstrasSP {
 		}
 	}
 
-	public double getDIstanceTo(int dest) {
+	public double getDistanceTo(int dest) {
 		return dist[dest];
 	}
 }

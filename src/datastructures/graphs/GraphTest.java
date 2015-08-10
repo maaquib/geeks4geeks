@@ -12,7 +12,7 @@ public class GraphTest {
 		g.addDirectedEdge(3, 1, 1);
 
 		DijkstrasSP d = new DijkstrasSP(g, 0);
-		System.out.println("Distance to 4 from 0: " + d.getDIstanceTo(4));
+		System.out.println("Distance to 4 from 0: " + d.getDistanceTo(4));
 
 		ConnectedComponents cc = new ConnectedComponents(g);
 		System.out.println("0, 4 Connected? " + cc.checkConnected(0, 4));
@@ -23,5 +23,12 @@ public class GraphTest {
 
 		DepthFirstSearch dfs = new DepthFirstSearch(g, 2);
 		dfs.printPathTo(4);
+
+		GraphCycle gc = new GraphCycle(g);
+		System.out.println("Has Cycle: " + gc.hasCycle());
+		g.addDirectedEdge(4, 3, 1);
+		gc = new GraphCycle(g);
+		System.out.println("Has Cycle: " + gc.hasCycle());
+		gc.printCycle();
 	}
 }

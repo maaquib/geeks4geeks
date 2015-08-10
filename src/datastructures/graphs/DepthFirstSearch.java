@@ -61,7 +61,7 @@ public class DepthFirstSearch {
 			System.out.println("No Path");
 		} else {
 			for (int vertice : pathToDest(dest)) {
-				System.out.print(vertice + "->");
+				System.out.print(vertice + "<-");
 			}
 			System.out.println();
 		}
