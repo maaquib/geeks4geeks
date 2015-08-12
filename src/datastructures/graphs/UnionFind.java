@@ -50,9 +50,9 @@ public class UnionFind {
 		 * Make root of smaller rank point to root of larger rank to keep paths
 		 * short. If ranks are similar pick arbitrarily
 		 */
-		if (idP < idQ) {
+		if (rank[idP] < rank[idQ]) {
 			parent[idP] = idQ;
-		} else if (idQ < idP) {
+		} else if (rank[idQ] < rank[idP]) {
 			parent[idQ] = idP;
 		} else {
 			parent[idQ] = idP;
