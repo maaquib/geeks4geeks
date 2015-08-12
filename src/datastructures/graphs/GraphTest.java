@@ -38,6 +38,11 @@ public class GraphTest {
 		System.out.println("Weight of MST: " + prim.weight());
 		System.out.println();
 
+		Bipartite b = new Bipartite(g);
+		System.out.println("Is bipartite: " + b.isBipartite());
+		b.printCycle();
+		System.out.println();
+
 		GraphCycle gc = new GraphCycle(g);
 		System.out.println("Has Cycle: " + gc.hasCycle());
 		g.addDirectedEdge(4, 3, 1);
